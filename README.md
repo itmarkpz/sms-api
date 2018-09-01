@@ -56,7 +56,16 @@ Response:
 
 ### Sending Bulk Messages
 
+You can specify up to 1,000 recipients/numbers at a time.
+
 ```php
 echo $semaphore->send(['09123456789', '09987654321'], 'Your message here');
 ```
 
+### Sending Priority Messages
+
+Normally messages are processed in the order they are received and during periods of heavy traffic messaging, messages can be delayed. If your message is time sensitive, you may wish to use our premium priority queue which bypasses the default message queue and sends the message immediately. <b>This service is 2 credits per 160 character SMS</b>.
+
+```php
+echo $semaphore->priority('09123456789', 'Your message here');
+```
