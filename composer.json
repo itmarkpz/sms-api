@@ -21,7 +21,5 @@
     	"psr-4": {
     		"CodeHub\\SMS\\": "src/"
     	}
-    },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+    }
 }
