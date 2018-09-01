@@ -1,6 +1,6 @@
 {
-	"name": "codehub/semaphore-sms",
-	"description": "A Third Party Library for Semaphore SMS API",
+	"name": "codehub/sms-api",
+	"description": "A Library for PHP SMS API (Semaphore)",
 	"keywords": ["semaphore", "sms", "sms-api"],
 	"license": "MIT",
 	"authors": [
@@ -12,15 +12,14 @@
     "require": {
     	"php": ">=5.5.9",
 		"guzzlehttp/guzzle": "^6.3",
-		"tightenco/collect": "^5.3.20",
-		"symfony/var-dumper": "^3.4.15"
+		"tightenco/collect": "^5.3.20"
     },
     "require-dev": {
 
     },
     "autoload": {
     	"psr-4": {
-    		"CodeHub\\": "src/"
+    		"CodeHub\\SMS\\": "src/"
     	}
     },
     "minimum-stability": "dev",
