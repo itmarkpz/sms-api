@@ -1,0 +1,28 @@
+{
+	"name": "codehub/semaphore-sms",
+	"description": "A Third Party Library for Semaphore SMS API",
+	"keywords": ["semaphore", "sms", "sms-api"],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Mark Angelo Perez",
+			"email": "itmarkpz@gmail.com"
+		}
+	],
+    "require": {
+    	"php": ">=5.5.9",
+		"guzzlehttp/guzzle": "^6.3",
+		"tightenco/collect": "^5.3.20",
+		"symfony/var-dumper": "^3.4.15"
+    },
+    "require-dev": {
+
+    },
+    "autoload": {
+    	"psr-4": {
+    		"CodeHub\\": "src/"
+    	}
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
