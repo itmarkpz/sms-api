@@ -5,6 +5,9 @@ SMS API is a Third Party PHP Library for the Semaphore SMS API
 # Table of Contents
  - [Installation](#installation)
  - [Semaphore](#semaphore)
+   - [Sending Messages](#sending-messages)
+   - [Sending Bulk Messages](#sending-bulk-messages)
+   - [Sending Priority Messages](#sending-priority-messages)
 
 ## Installation
 
@@ -69,3 +72,5 @@ Normally messages are processed in the order they are received and during period
 ```php
 echo $semaphore->priority('09123456789', 'Your message here');
 ```
+
+### Retrieving Messages
