@@ -24,15 +24,15 @@ class Semaphore extends Collection
 
 	public function send( $recipient, string $message )
 	{
-		if (!is_array($recipient) && is_numeric($recipient)) {
-			$recipient = array($recipient);
-		} else {
-			throw new Exception("Invalid supplied recipient number");
+		if (!is_array($recipient) || !is_numeric($recipient)) {
+			throw new Exception("Invalid supplied recipient number");	
 		}
 
-		$recipient = collect($recipient);
+		if (is_numeric($recipient)) $recipient = array($recipient); 
 
-		if ($recipient->filter()->count() > 1000) {
+		$recipient = collect($recipient)->filter()->unique();
+
+		if ($recipient->count() > 1000) {
 			throw new Exception( 'SMS Api is limited to sending to 1000 recipients at a time' );
 		}
 
