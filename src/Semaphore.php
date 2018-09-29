@@ -11,20 +11,20 @@ use Exception;
 
 class Semaphore extends Collection
 {
-	
+
 	public function __construct( $api_key, $sender_name = '' )
 	{
 		$this->base_uri = 'https://api.semaphore.co/api/v4/';
 	
 		$this->parameters('query', [
-			'apikey' 	 => $api_key,
+			'apikey'     => $api_key,
 			'sendername' => $sender_name
 		]);
 	}
 
 	public function send( $recipient, string $message )
 	{
-		if (!is_array($recipient) || !is_numeric($recipient)) {
+		if (!is_array($recipient) && !is_numeric($recipient)) {
 			throw new Exception("Invalid supplied recipient number");	
 		}
 
@@ -33,7 +33,7 @@ class Semaphore extends Collection
 		$recipient = collect($recipient)->filter()->unique();
 
 		if ($recipient->count() > 1000) {
-			throw new Exception( 'SMS Api is limited to sending to 1000 recipients at a time' );
+		    throw new Exception( 'SMS Api is limited to sending to 1000 recipients at a time' );
 		}
 
 		$this->segment = 'messages';
