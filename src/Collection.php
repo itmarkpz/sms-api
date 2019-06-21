@@ -21,15 +21,17 @@ abstract class Collection
 	{
 		$result = [];
 		$method = $this->method;
+		$params = [];
 
 		$client = new Client(['base_uri' => $this->base_uri]);
 
 		if ($this->method == 'post') {
-			$this->params['form_params'] = $this->params['query'];
-			unset($this->params['query']);
+			$params['form_params'] = $this->params;
+		} else {
+			$params['query'] = $this->params;
 		}
 
-		$response = $client->$method($this->segment, $this->params);
+		$response = $client->$method($this->segment, $params);
 
 		if ($response->getStatusCode() == 200) {
 			$result = json_decode($response->getBody()->getContents());

@@ -16,7 +16,7 @@ class Semaphore extends Collection
 	{
 		$this->base_uri = 'https://api.semaphore.co/api/v4/';
 	
-		$this->parameters('query', [
+		$this->setParam([
 			'apikey'     => $api_key,
 			'sendername' => $sender_name
 		]);
