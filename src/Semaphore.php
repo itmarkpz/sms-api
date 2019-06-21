@@ -39,7 +39,7 @@ class Semaphore extends Collection
 		$this->segment = 'messages';
 		$this->method  = 'post';
 		
-		$this->parameters('query', [
+		$this->setParam([
 			'number'  => $recipient->implode(','),
 			'message' => $message
 		]);
@@ -50,7 +50,7 @@ class Semaphore extends Collection
 	public function priority( int $recipient, string $message )
 	{
 		$this->segment = 'priority';
-		$this->parameters('query', [
+		$this->setParam([
 			'number'  => $number,
 			'message' => $message
 		]);
@@ -61,7 +61,8 @@ class Semaphore extends Collection
 	public function messages( array $params = [] )
 	{
 		$this->segment = 'messages';
-		$this->parameters('query', $params);
+		$this->setParam($params);
+		$this->removeParam('sendername');
 
 		return $this->fire()->reverse()->values();
 	}
@@ -69,6 +70,7 @@ class Semaphore extends Collection
 	public function message( int $id )
 	{
 		$this->segment = 'messages/' . $id;
+		$this->removeParam('sendername');
 
 		return $this->fire();
 	}
@@ -76,6 +78,7 @@ class Semaphore extends Collection
 	public function account()
 	{
 		$this->segment = 'account';
+		$this->removeParam('sendername');
 
 		return $this->fire();
 	}
@@ -83,10 +86,11 @@ class Semaphore extends Collection
 	public function transactions( int $limit = null, int $page = null )
 	{
 		$this->segment = 'account/transactions';
-		$this->parameters('query', [
+		$this->setParam([
 			'limit' => $limit,
 			'page'  => $page
 		]);
+		$this->removeParam('sendername');
 
 		return $this->fire();
 	}
@@ -94,10 +98,11 @@ class Semaphore extends Collection
 	public function sendernames( int $limit = null, int $page = null )
 	{
 		$this->segment = 'account/sendernames';
-		$this->parameters('query', [
+		$this->setParam([
 			'limit' => $limit,
 			'page'  => $page
 		]);
+		$this->removeParam('sendername');
 
 		return $this->fire();
 	}
@@ -105,10 +110,11 @@ class Semaphore extends Collection
 	public function users( int $limit = null, int $page = null )
 	{
 		$this->segment = 'account/users';
-		$this->parameters('query', [
+		$this->setParam([
 			'limit' => $limit,
 			'page'  => $page
 		]);
+		$this->removeParam('sendername');
 
 		return $this->fire();
 

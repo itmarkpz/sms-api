@@ -35,19 +35,22 @@ abstract class Collection
 			$result = json_decode($response->getBody()->getContents());
 		}
 
-		return collect($result);	
+		return collect($result)->toArray();	
 	}
-
-	protected function parameters( $index, $name, $value = '')
+	
+	protected function setParam($name, $value = '')
 	{
-		if ( $index && is_array($name) ) {
-			if ( isset($this->params[$index]) ) {
-				$this->params[$index] = array_merge($this->params[$index], array_filter($name));
-			} else {
-				$this->params[$index] = array_filter($name);
-			}
-		} else if ( collect(array_filter(func_get_args()))->count() == 3 ) {
-			$this->params[$index][$name] = $value;
+		if (is_array($name)) {
+			$this->params = array_merge($this->params, array_filter($name));
+		} else {
+			$this->params[$name] = $value;
+		}
+	}
+	
+	protected function removeParam($index)
+	{
+		if (isset($this->params[$index])) {
+			unset($this->params[$index]);
 		}
 	}
 }
