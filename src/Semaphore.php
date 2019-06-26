@@ -64,7 +64,7 @@ class Semaphore extends Collection
 		$this->setParam($params);
 		$this->removeParam('sendername');
 
-		return $this->fire()->reverse()->values();
+		return $this->fire();
 	}
 
 	public function message( int $id )

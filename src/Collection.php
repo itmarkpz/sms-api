@@ -30,13 +30,13 @@ abstract class Collection
 		} else {
 			$params['query'] = $this->params;
 		}
-
+		
 		$response = $client->$method($this->segment, $params);
 
 		if ($response->getStatusCode() == 200) {
 			$result = json_decode($response->getBody()->getContents());
 		}
-
+		
 		return collect($result)->toArray();	
 	}
 	
